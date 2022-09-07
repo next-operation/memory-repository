@@ -3,7 +3,7 @@ plugins {
     id 'maven-publish'
 }
 
-group 'org.next-operation'
+group 'com.github.next-operation'
 
 repositories {
     mavenCentral()
