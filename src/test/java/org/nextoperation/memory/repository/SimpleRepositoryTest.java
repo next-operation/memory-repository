@@ -12,9 +12,9 @@ import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
 
-class IndexKeyRepositoryTest {
+class SimpleRepositoryTest {
 
-    private final MemoryRepository<String, Long> repository = new IndexKeyRepository();
+    private final MemoryRepository<String, Long> repository = new SimpleRepository();
 
     @AfterEach
     void tearDown() {
