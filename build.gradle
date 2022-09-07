@@ -4,6 +4,7 @@ plugins {
 }
 
 group 'com.github.next-operation'
+version '1.0.5'
 
 repositories {
     mavenCentral()
