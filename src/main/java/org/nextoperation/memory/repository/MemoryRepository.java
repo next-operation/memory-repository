@@ -12,6 +12,11 @@ import java.util.stream.Collectors;
 
 public abstract class MemoryRepository<T, ID> implements CrudMemoryRepository<T, ID> {
 
+    /**
+     * data storage. key is index, value is element. this map is thread-safe.
+     *
+     * @see ConcurrentHashMap
+     */
     private final Map<ID, T> map = new ConcurrentHashMap<>();
 
     @Override
@@ -27,21 +32,43 @@ public abstract class MemoryRepository<T, ID> implements CrudMemoryRepository<T,
      */
     protected abstract Map<ID, T> groupBy(List<? extends T> elements);
 
+    /**
+     * Find by id
+     *
+     * @param id id
+     * @return Optional of T
+     */
     @Override
     public Optional<T> findById(ID id) {
         return Optional.ofNullable(map.get(id));
     }
 
+    /**
+     * Find all elements in the repository as a map
+     *
+     * @return a map of id and elements
+     */
     @Override
     public Map<ID, T> findAllAsMap() {
         return Collections.unmodifiableMap(map);
     }
 
+    /**
+     * Find all elements in the repository as a list
+     *
+     * @return List of T
+     */
     @Override
     public List<T> findAll() {
         return List.copyOf(map.values());
     }
 
+    /**
+     * Find all elements by id
+     *
+     * @param ids ids
+     * @return List of T
+     */
     @Override
     public List<T> findAllById(Iterable<ID> ids) {
         List<T> result = new ArrayList<>();
@@ -52,16 +79,31 @@ public abstract class MemoryRepository<T, ID> implements CrudMemoryRepository<T,
         return result.stream().filter(Objects::nonNull).collect(Collectors.toList());
     }
 
+    /**
+     * Count elements in the repository
+     *
+     * @return number of elements
+     */
     @Override
     public long count() {
         return map.values().size();
     }
 
+    /**
+     * Delete element by id
+     *
+     * @param id id
+     */
     @Override
     public void deleteById(ID id) {
         map.remove(id);
     }
 
+    /**
+     * Delete element, if the element is not in the repository, throw NoSuchElementException.
+     *
+     * @param element element
+     */
     @Override
     public void delete(T element) {
         ID id = map.entrySet().stream()
@@ -71,11 +113,21 @@ public abstract class MemoryRepository<T, ID> implements CrudMemoryRepository<T,
         map.remove(id);
     }
 
+    /**
+     * Delete elements by iterable of ids.
+     *
+     * @param ids ids
+     */
     @Override
     public void deleteAllById(Iterable<? extends ID> ids) {
         ids.forEach(map::remove);
     }
 
+    /**
+     * Delete elements by iterable of elements.
+     *
+     * @param elements elements
+     */
     @Override
     public void deleteAll(Iterable<? extends T> elements) {
         for (T element : elements) {
@@ -87,11 +139,20 @@ public abstract class MemoryRepository<T, ID> implements CrudMemoryRepository<T,
         }
     }
 
+    /**
+     * Delete all elements in the repository.
+     */
     @Override
     public void deleteAll() {
         map.clear();
     }
 
+    /**
+     * Check if the element is in the repository.
+     *
+     * @param id id
+     * @return true if the element is in the repository, otherwise false.
+     */
     @Override
     public boolean existsById(ID id) {
         return map.containsKey(id);
