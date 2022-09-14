@@ -12,6 +12,12 @@ import java.util.stream.IntStream;
  */
 public class SimpleRepository extends MemoryRepository<String, Long> {
 
+    /**
+     * group by index
+     *
+     * @param elements data to be saved
+     * @return a map of index and elements
+     */
     @Override
     protected Map<Long, String> groupBy(List<? extends String> elements) {
         return IntStream.range(0, elements.size())
