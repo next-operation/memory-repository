@@ -38,6 +38,7 @@ public interface CrudMemoryRepository<T, ID> extends MemoryRepository<T, ID> {
     /**
      * Find all elements by ids
      *
+     * @param ids ids to find
      * @return Iterable of T
      */
     Iterable<T> findAllById(Iterable<ID> ids);

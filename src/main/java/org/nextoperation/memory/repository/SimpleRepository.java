@@ -13,6 +13,12 @@ import java.util.stream.IntStream;
 public class SimpleRepository extends ConcurrentMemoryRepository<String, Long> {
 
     /**
+     * Create an empty repository with Long as index, String as value
+     */
+    public SimpleRepository() {
+    }
+
+    /**
      * group by index
      *
      * @param elements data to be saved
