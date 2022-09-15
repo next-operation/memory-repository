@@ -14,7 +14,7 @@ import org.junit.jupiter.api.TestFactory;
 
 class SimpleRepositoryTest {
 
-    private final MemoryRepository<String, Long> repository = new SimpleRepository();
+    private final ConcurrentMemoryRepository<String, Long> repository = new SimpleRepository();
 
     @AfterEach
     void tearDown() {
