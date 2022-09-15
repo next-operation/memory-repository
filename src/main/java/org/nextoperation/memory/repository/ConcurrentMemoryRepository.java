@@ -20,6 +20,12 @@ import java.util.stream.Collectors;
 public abstract class ConcurrentMemoryRepository<T, ID> implements CrudMemoryRepository<T, ID> {
 
     /**
+     * Create an empty repository
+     */
+    public ConcurrentMemoryRepository() {
+    }
+
+    /**
      * data storage. key is index, value is element. this map is thread-safe.
      *
      * @see ConcurrentHashMap
