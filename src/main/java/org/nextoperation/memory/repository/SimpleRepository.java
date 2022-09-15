@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
  *
  * @author haril song
  */
-public class SimpleRepository extends MemoryRepository<String, Long> {
+public class SimpleRepository extends ConcurrentMemoryRepository<String, Long> {
 
     /**
      * group by index

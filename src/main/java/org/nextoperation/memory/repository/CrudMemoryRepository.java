@@ -5,12 +5,13 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * Repository interface for CRUD operations
+ * Interface for generic CRUD operations on a repository for a specific type.
  *
  * @param <T>  type of element
  * @param <ID> type of id
+ * @author haril song
  */
-public interface CrudMemoryRepository<T, ID> {
+public interface CrudMemoryRepository<T, ID> extends MemoryRepository<T, ID> {
 
     /**
      * Save all elements
