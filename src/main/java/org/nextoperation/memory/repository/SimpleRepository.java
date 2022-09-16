@@ -10,10 +10,10 @@ import java.util.stream.IntStream;
  *
  * @author haril song
  */
-public class SimpleRepository extends ConcurrentMemoryRepository<String, Long> {
+public class SimpleRepository<T> extends ConcurrentMemoryRepository<T, Long> {
 
     /**
-     * Create an empty repository with Long as index, String as value
+     * Create an empty repository with Long as index, T as value
      */
     public SimpleRepository() {
     }
@@ -25,7 +25,7 @@ public class SimpleRepository extends ConcurrentMemoryRepository<String, Long> {
      * @return a map of index and elements
      */
     @Override
-    protected Map<Long, String> groupBy(List<? extends String> elements) {
+    protected Map<Long, T> groupBy(List<? extends T> elements) {
         return IntStream.range(0, elements.size())
                 .boxed()
                 .collect(Collectors.toMap(i -> (long) i, elements::get, (a, b) -> b));
