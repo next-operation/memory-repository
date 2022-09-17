@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -22,9 +23,9 @@ public abstract class ConcurrentMultiValueRepository<T, ID> implements MultiValu
     private final Map<ID, List<T>> map = new ConcurrentHashMap<>();
 
     @Override
-    public T findFirst(ID id) {
+    public Optional<T> findFirst(ID id) {
         List<T> elements = map.get(id);
-        return elements != null && !elements.isEmpty() ? elements.get(0) : null;
+        return elements == null ? Optional.empty() : Optional.ofNullable(elements.get(0));
     }
 
     @Override

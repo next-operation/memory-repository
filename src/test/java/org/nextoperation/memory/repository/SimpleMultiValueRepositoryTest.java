@@ -2,7 +2,9 @@ package org.nextoperation.memory.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Collections;
 import java.util.List;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -51,9 +53,25 @@ class SimpleMultiValueRepositoryTest {
         repository.add(3L, "g");
         repository.add(3L, "h");
         repository.add(3L, "i");
-        assertThat(repository.findFirst(1L)).isEqualTo("a");
-        assertThat(repository.findFirst(2L)).isEqualTo("d");
-        assertThat(repository.findFirst(3L)).isEqualTo("g");
+        assertThat(repository.findFirst(1L)).contains("a");
+        assertThat(repository.findFirst(2L)).contains("d");
+        assertThat(repository.findFirst(3L)).contains("g");
+    }
+
+    @Test
+    @DisplayName("findFirst with null")
+    void findFirstWithNullTest() {
+        SimpleMultiValueRepository<String> repository = new SimpleMultiValueRepository<>();
+        assertThat(repository.findFirst(1L)).isEmpty();
+    }
+
+    @Test
+    @Disabled("not implemented yet")
+    @DisplayName("addAll can not add empty list")
+    void findFirstWithEmptyListTest() {
+        SimpleMultiValueRepository<String> repository = new SimpleMultiValueRepository<>();
+        repository.addAll(1L, Collections.emptyList());
+//        assertThat(repository.findAll()).isEmpty();
     }
 
     @Test

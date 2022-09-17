@@ -1,6 +1,7 @@
 package org.nextoperation.memory.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Extended repository with multi-value support.
@@ -16,9 +17,9 @@ public interface MultiValueRepository<T, ID> extends MemoryRepository<List<T>, I
      * Return the first element for the given key.
      *
      * @param id key
-     * @return first element
+     * @return first optional element for the given key
      */
-    T findFirst(ID id);
+    Optional<T> findFirst(ID id);
 
     /**
      * Add element
@@ -28,6 +29,12 @@ public interface MultiValueRepository<T, ID> extends MemoryRepository<List<T>, I
      */
     void add(ID id, T element);
 
+    /**
+     * Add elements to the given key. if elements is empty, do nothing.
+     *
+     * @param id id of elements
+     * @param elements elements to save
+     */
     default void addAll(ID id, List<? extends T> elements) {
         elements.forEach(e -> add(id, e));
     }
