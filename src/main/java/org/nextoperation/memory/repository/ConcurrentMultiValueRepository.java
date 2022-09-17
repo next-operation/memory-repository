@@ -24,7 +24,7 @@ public abstract class ConcurrentMultiValueRepository<T, ID> implements MultiValu
     @Override
     public T findFirst(ID id) {
         List<T> elements = map.get(id);
-        return (elements != null && !elements.isEmpty() ? elements.get(0) : null);
+        return elements != null && !elements.isEmpty() ? elements.get(0) : null;
     }
 
     @Override
