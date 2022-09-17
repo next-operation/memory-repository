@@ -1,5 +1,7 @@
 package org.nextoperation.memory.repository;
 
-public class SimpleMultiValueRepository<T> extends ConcurrentMultiValueRepository<T, Long>{
+import org.nextoperation.memory.repository.concurrent.ConcurrentMultiValueRepository;
+
+public class SimpleMultiValueRepository<T> extends ConcurrentMultiValueRepository<T, Long> {
 
 }
