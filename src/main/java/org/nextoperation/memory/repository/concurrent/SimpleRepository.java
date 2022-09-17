@@ -1,4 +1,4 @@
-package org.nextoperation.memory.repository;
+package org.nextoperation.memory.repository.concurrent;
 
 import java.util.List;
 import java.util.Map;

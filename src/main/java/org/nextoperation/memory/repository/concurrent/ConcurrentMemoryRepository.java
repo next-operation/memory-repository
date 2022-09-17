@@ -1,4 +1,4 @@
-package org.nextoperation.memory.repository;
+package org.nextoperation.memory.repository.concurrent;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,6 +9,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
+import org.nextoperation.memory.repository.CrudMemoryRepository;
 
 /**
  * Concurrent memory repository. This repository is thread-safe.

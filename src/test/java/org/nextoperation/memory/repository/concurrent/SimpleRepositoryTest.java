@@ -1,4 +1,4 @@
-package org.nextoperation.memory.repository;
+package org.nextoperation.memory.repository.concurrent;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
